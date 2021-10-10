@@ -1,0 +1,13 @@
+mysql> source query.sql
+Database changed
+Query OK, 0 rows affected (0.18 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> notee

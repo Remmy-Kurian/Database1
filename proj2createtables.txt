@@ -1,0 +1,59 @@
+CREATE TABLE MANUFACTURED_DOSES
+(lot_Id INT NOT NULL AUTO_INCREMENT,
+date_Manuf DATETIME,
+manuf_Name VARCHAR(50) NOT NULL, 
+doses_Count INT,
+pathogen_Type VARCHAR(50) NOT NULL,
+protein_Type VARCHAR(50) NOT NULL,
+virus_Type VARCHAR(50) NOT NULL, 
+rna_Type VARCHAR(50) NOT NULL, 
+PRIMARY KEY (lot_Id));
+
+
+
+
+CREATE TABLE `FEDERAL` 
+(
+`uid` INT NOT NULL AUTO_INCREMENT , 
+`date_Proc` DATETIME NOT NULL , 
+`incoming_Lot_Id` INT NOT NULL , 
+`manuf_Name` VARCHAR(50) NOT NULL , 
+`state` VARCHAR(50) NOT NULL , 
+`dose_Proc_Count` INT NOT NULL , 
+`vaccine_Type` VARCHAR(50) NOT NULL , 
+`date_Manuf` DATETIME NOT NULL , 
+PRIMARY KEY (`uid`),
+Foreign Key (incoming_Lot_Id) references MANUFACTURED_DOSES(lot_Id)
+);
+
+
+CREATE TABLE `STATE_DISTR`
+( `fid` INT NOT NULL , 
+`trans_Id` INT NOT NULL AUTO_INCREMENT , 
+`vaccine_Type` VARCHAR(50) NOT NULL , 
+`manuf_Name` VARCHAR(50) NOT NULL , 
+`state` VARCHAR(50) NOT NULL , 
+`received_Datetime` DATETIME NOT NULL , 
+`received_Count` INT NOT NULL , 
+PRIMARY KEY (`trans_Id`),
+Foreign Key (fid) references FEDERAL(uid));
+
+CREATE TABLE `VACCINE_DISTR`( 
+`vaccine_ID` INT NOT NULL AUTO_INCREMENT , 
+`unit_Name` VARCHAR(50) NOT NULL ,
+`trans_ID` INT NULL , 
+`date_Distr` DATETIME NOT NULL , 
+`state` VARCHAR(50) NOT NULL , 
+`dose1` BOOLEAN NULL , 
+`dose2` BOOLEAN NULL , 
+`p_Name` VARCHAR(50) NULL , 
+`p_Addr` VARCHAR(50) NULL , 
+`p_Contact` INT NULL , 
+`p_Age` INT NULL , 
+`p_Allergy_hist` VARCHAR(50) NULL , 
+`p_Id` INT NULL , 
+`p_Medical_Cond` VARCHAR(50) NULL ,  
+PRIMARY KEY (`vaccine_Id`),
+Foreign Key (trans_Id) references STATE_DISTR(trans_Id));
+
+

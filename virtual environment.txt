@@ -1,0 +1,14 @@
+python -m venv venv
+
+venv\Scripts\activate
+
+python -m pip install --upgrade pip
+
+(Create a file requirements.txt and type Django~=2.2.4)
+
+pip install -r requirements.txt
+
+pip install django
+
+python -m django --version
+
